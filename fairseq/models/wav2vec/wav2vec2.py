@@ -935,7 +935,7 @@ def make_conv_pos(e, k, g):
     nn.init.normal_(pos_conv.weight, mean=0, std=std)
     nn.init.constant_(pos_conv.bias, 0)
 
-    pos_conv = nn.utils.weight_norm(pos_conv, name="weight", dim=2)
+    pos_conv = nn.utils.parametrizations.weight_norm(pos_conv, name="weight", dim=2)
     pos_conv = nn.Sequential(pos_conv, SamePad(k), nn.GELU())
 
     return pos_conv
